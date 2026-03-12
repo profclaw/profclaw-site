@@ -1,0 +1,169 @@
+---
+const modes = [
+  {
+    name: 'Pico',
+    ram: '~50 MB',
+    tagline: 'Minimal footprint, maximum capability',
+    accent: '#22c55e',
+    barWidth: '17',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2m-6-2v2m6 16v2m-6-2v2m8-12h2M2 15h2m16-6h2M2 9h2"/></svg>',
+    audience: 'Makers & Tinkerers',
+    useCases: [
+      'Run an AI assistant on a Raspberry Pi',
+      'Lightweight CLI agent on any server',
+      'Offline AI on planes, trains, or remote sites',
+      'Embedded AI for smart home setups',
+    ],
+    highlights: ['51+ tools', '1 channel', 'SQLite', 'CLI access'],
+  },
+  {
+    name: 'Mini',
+    ram: '~150 MB',
+    tagline: 'The sweet spot for personal use',
+    accent: '#fb7185',
+    popular: true,
+    barWidth: '50',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>',
+    audience: 'Creators & Developers',
+    useCases: [
+      'Personal AI copilot on your Mac or laptop',
+      'Draft emails, blog posts, and social media content',
+      'Automate code reviews and daily summaries',
+      'Organize research and manage your knowledge base',
+    ],
+    highlights: ['Web dashboard', 'Cron jobs', '2 channels', 'Cost tracking'],
+  },
+  {
+    name: 'Pro',
+    ram: '~300 MB',
+    tagline: 'Full power for teams and businesses',
+    accent: '#a78bfa',
+    barWidth: '100',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12H2m20 0a10 10 0 1 1-20 0 10 10 0 0 1 20 0z"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>',
+    audience: 'Teams & Businesses',
+    useCases: [
+      'Runs on Mac, Linux, Docker, or any cloud - just like OpenClaw',
+      'Company-wide AI assistant across Slack, Discord, Teams, and more',
+      'Automate customer support, ticket triage, and reporting',
+      'Custom plugins and voice-controlled workflows for any team',
+    ],
+    highlights: ['22+ channels', 'Redis queues', 'Plugin SDK', 'Voice I/O'],
+  },
+];
+---
+
+<section id="modes" class="fade-in-section relative z-10 px-6 py-16 max-w-6xl mx-auto">
+  <p class="text-center text-xs font-semibold tracking-[0.2em] uppercase mb-3" style="color: var(--accent-bright);">
+    Deployment
+  </p>
+  <h2 class="font-heading text-2xl sm:text-3xl font-[800] text-center mb-3" style="color: var(--text-primary); letter-spacing: -0.02em;">
+    Pick your size
+  </h2>
+  <p class="text-center text-sm mb-12 max-w-md mx-auto" style="color: var(--text-secondary);">
+    Three deployment modes. Same codebase. Scale up when you need more.
+  </p>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    {modes.map((mode) => (
+      <div class={`mode-card relative group ${mode.popular ? 'mode-popular' : ''}`}>
+        {/* Popular badge - inside the card */}
+        {mode.popular && (
+          <div class="flex justify-center pt-4 pb-0">
+            <span class="px-4 py-1 rounded-full text-[0.65rem] font-bold text-white tracking-wide uppercase" style="background: linear-gradient(135deg, #fb7185, #e11d48); box-shadow: 0 4px 12px rgba(225, 29, 72, 0.3);">
+              Most Popular
+            </span>
+          </div>
+        )}
+
+        {/* Accent top border glow */}
+        <div class="absolute top-0 left-0 right-0 h-[2px] rounded-t-2xl" style={`background: linear-gradient(90deg, transparent, ${mode.accent}, transparent);`} />
+
+        <div class="relative z-10 p-6" style={mode.popular ? 'padding-top: 12px;' : ''}>
+          {/* Header: icon + name + RAM */}
+          <div class="flex items-center gap-3 mb-1">
+            <div class="w-11 h-11 flex items-center justify-center rounded-xl transition-all duration-300 group-hover:scale-110" style={`color: ${mode.accent}; background: ${mode.accent}12; border: 1px solid ${mode.accent}20;`}>
+              <div class="w-[20px] h-[20px]" set:html={mode.icon} />
+            </div>
+            <div class="flex-1">
+              <h3 class="font-heading text-xl font-[800]" style="color: var(--text-primary); letter-spacing: -0.02em;">{mode.name}</h3>
+            </div>
+            <span class="text-xs font-mono px-3 py-1 rounded-lg" style={`color: ${mode.accent}; background: ${mode.accent}12; border: 1px solid ${mode.accent}20;`}>
+              {mode.ram}
+            </span>
+          </div>
+
+          {/* Tagline */}
+          <p class="text-xs mb-4" style="color: var(--text-muted);">{mode.tagline}</p>
+
+          {/* RAM visualization bar */}
+          <div class="mb-5">
+            <div class="w-full h-1.5 rounded-full" style="background: var(--border-subtle);">
+              <div class="h-full rounded-full mode-bar" data-width={mode.barWidth} style={`width: ${mode.barWidth}%; background: linear-gradient(90deg, ${mode.accent}60, ${mode.accent});`} />
+            </div>
+          </div>
+
+          {/* Audience badge */}
+          <div class="mb-4">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[0.7rem] font-semibold" style={`color: ${mode.accent}; background: ${mode.accent}10; border: 1px solid ${mode.accent}15;`}>
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+              {mode.audience}
+            </span>
+          </div>
+
+          {/* Use cases */}
+          <ul class="space-y-2.5 mb-5">
+            {mode.useCases.map((useCase) => (
+              <li class="flex items-start gap-2 text-[0.78rem] leading-snug" style="color: var(--text-secondary);">
+                <svg class="w-3.5 h-3.5 mt-0.5 shrink-0" style={`color: ${mode.accent};`} fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" /></svg>
+                {useCase}
+              </li>
+            ))}
+          </ul>
+
+          {/* Highlight pills */}
+          <div class="flex flex-wrap gap-1.5">
+            {mode.highlights.map((h) => (
+              <span class="text-[0.6rem] font-medium px-2 py-0.5 rounded-md" style={`color: ${mode.accent}; background: ${mode.accent}08; border: 1px solid ${mode.accent}12;`}>
+                {h}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  {/* Footnote */}
+  <p class="text-center text-[0.7rem] mt-8" style="color: var(--text-muted);">
+    All modes ship from the same codebase. Switch anytime with a single environment variable.
+  </p>
+</section>
+
+<style>
+  .mode-card {
+    position: relative;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 18px;
+    backdrop-filter: blur(var(--glass-blur)) var(--glass-saturate);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) var(--glass-saturate);
+    box-shadow: var(--shadow-sm), inset 0 1px 0 0 rgba(255, 255, 255, 0.04);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    overflow: hidden;
+  }
+
+  .mode-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-card);
+    border-color: var(--border-accent);
+  }
+
+  .mode-popular {
+    border-color: var(--border-accent) !important;
+    box-shadow: var(--shadow-card), var(--shadow-glow) !important;
+  }
+
+  .mode-popular:hover {
+    box-shadow: var(--shadow-elevated), var(--shadow-glow) !important;
+  }
+</style>

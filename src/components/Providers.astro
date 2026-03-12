@@ -1,0 +1,91 @@
+---
+const row1 = [
+  { name: 'Anthropic', color: '#D4A574' },
+  { name: 'OpenAI', color: '#00A67E' },
+  { name: 'Google', color: '#4285F4' },
+  { name: 'Groq', color: '#F55036' },
+  { name: 'Ollama', color: '#FFFFFF' },
+  { name: 'DeepSeek', color: '#4D9CF8' },
+  { name: 'Mistral', color: '#F7931E' },
+  { name: 'Cohere', color: '#39594D' },
+  { name: 'Perplexity', color: '#20B2AA' },
+  { name: 'Together AI', color: '#6366F1' },
+  { name: 'Fireworks', color: '#FF6B35' },
+  { name: 'OpenRouter', color: '#8B5CF6' },
+];
+
+const row2 = [
+  { name: 'Slack', color: '#E01E5A' },
+  { name: 'Discord', color: '#5865F2' },
+  { name: 'Telegram', color: '#26A5E4' },
+  { name: 'WhatsApp', color: '#25D366' },
+  { name: 'Matrix', color: '#0DBD8B' },
+  { name: 'Google Chat', color: '#34A853' },
+  { name: 'MS Teams', color: '#6264A7' },
+  { name: 'Signal', color: '#3A76F0' },
+  { name: 'IRC', color: '#94A3B8' },
+  { name: 'LINE', color: '#06C755' },
+  { name: 'iMessage', color: '#34C759' },
+  { name: 'WebChat', color: '#f43f5e' },
+  { name: 'Mattermost', color: '#0058CC' },
+  { name: 'MCP', color: '#94A3B8' },
+];
+
+const marqueeRow1 = [...row1, ...row1];
+const marqueeRow2 = [...row2, ...row2];
+---
+
+<section class="fade-in-section relative z-10 py-16 px-6">
+  <p class="text-center text-xs font-semibold tracking-[0.2em] uppercase mb-3" style="color: var(--accent-bright);">
+    Ecosystem
+  </p>
+  <h2 class="font-heading text-2xl sm:text-3xl font-[800] text-center mb-3" style="color: var(--text-primary); letter-spacing: -0.02em;">
+    Works with everything
+  </h2>
+  <p class="text-center text-sm mb-10 max-w-md mx-auto" style="color: var(--text-secondary);">
+    15+ AI providers, 22+ chat channels, and dozens of integrations.
+  </p>
+
+  <div class="providers-wrap">
+    <div class="providers-fade-l"></div>
+    <div class="providers-fade-r"></div>
+    <div class="space-y-2.5 overflow-hidden">
+      <div class="overflow-hidden">
+        <div class="marquee-track marquee-left" style="--duration: 45s;">
+          {marqueeRow1.map((p) => (
+            <span class="marquee-pill">
+              <span class="w-2 h-2 rounded-full shrink-0" style={`background: ${p.color}; box-shadow: 0 0 6px ${p.color}60;`}></span>
+              <span style="color: var(--text-secondary);">{p.name}</span>
+            </span>
+          ))}
+        </div>
+      </div>
+      <div class="overflow-hidden">
+        <div class="marquee-track marquee-right" style="--duration: 50s;">
+          {marqueeRow2.map((p) => (
+            <span class="marquee-pill">
+              <span class="w-2 h-2 rounded-full shrink-0" style={`background: ${p.color}; box-shadow: 0 0 6px ${p.color}60;`}></span>
+              <span style="color: var(--text-secondary);">{p.name}</span>
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .providers-wrap {
+    position: relative;
+    max-width: 60rem;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 16px;
+    padding: 1rem 0;
+  }
+  .providers-fade-l, .providers-fade-r {
+    position: absolute; top: 0; bottom: 0; width: 100px; z-index: 2; pointer-events: none;
+  }
+  .providers-fade-l { left: 0; background: linear-gradient(90deg, var(--bg-deep), transparent); }
+  .providers-fade-r { right: 0; background: linear-gradient(270deg, var(--bg-deep), transparent); }
+</style>

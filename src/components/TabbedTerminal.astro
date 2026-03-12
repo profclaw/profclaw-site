@@ -1,0 +1,359 @@
+---
+type TabId = 'npm' | 'yarn' | 'bun' | 'pnpm' | 'docker' | 'curl';
+
+interface Tab {
+  id: TabId;
+  label: string;
+  copyText: string;
+  lines: Array<{ type: 'comment' | 'command'; text: string }>;
+}
+
+const tabs: Tab[] = [
+  {
+    id: 'npm',
+    label: 'npm',
+    copyText: 'npx profclaw onboard',
+    lines: [
+      { type: 'comment', text: '# Zero-to-running wizard' },
+      { type: 'command', text: 'npx profclaw onboard' },
+    ],
+  },
+  {
+    id: 'yarn',
+    label: 'yarn',
+    copyText: 'yarn dlx profclaw onboard',
+    lines: [
+      { type: 'comment', text: '# Zero-to-running wizard' },
+      { type: 'command', text: 'yarn dlx profclaw onboard' },
+    ],
+  },
+  {
+    id: 'bun',
+    label: 'bun',
+    copyText: 'bunx profclaw onboard',
+    lines: [
+      { type: 'comment', text: '# Zero-to-running wizard' },
+      { type: 'command', text: 'bunx profclaw onboard' },
+    ],
+  },
+  {
+    id: 'pnpm',
+    label: 'pnpm',
+    copyText: 'pnpm dlx profclaw onboard',
+    lines: [
+      { type: 'comment', text: '# Zero-to-running wizard' },
+      { type: 'command', text: 'pnpm dlx profclaw onboard' },
+    ],
+  },
+  {
+    id: 'docker',
+    label: 'Docker',
+    copyText: 'docker run -d -p 3000:3000 -e ANTHROPIC_API_KEY=sk-ant-xxx -e PROFCLAW_MODE=mini ghcr.io/profclaw/profclaw:latest',
+    lines: [
+      { type: 'comment', text: '# Run with Docker' },
+      { type: 'command', text: 'docker run -d \\' },
+      { type: 'command', text: '  -p 3000:3000 \\' },
+      { type: 'command', text: '  -e ANTHROPIC_API_KEY=sk-ant-xxx \\' },
+      { type: 'command', text: '  -e PROFCLAW_MODE=mini \\' },
+      { type: 'command', text: '  ghcr.io/profclaw/profclaw:latest' },
+    ],
+  },
+  {
+    id: 'curl',
+    label: 'curl',
+    copyText: 'curl -fsSL https://profclaw.ai/install.sh | bash',
+    lines: [
+      { type: 'comment', text: '# Install everything for you' },
+      { type: 'command', text: 'curl -fsSL https://profclaw.ai/install.sh | bash' },
+    ],
+  },
+];
+---
+
+<div class="tabbed-terminal-wrapper">
+  <div class="tabbed-terminal">
+
+    {tabs.map((tab, i) => (
+      <input
+        type="radio"
+        name="terminal-tab"
+        id={`tab-${tab.id}`}
+        class="tab-radio"
+        checked={i === 0}
+      />
+    ))}
+
+    <!-- macOS chrome -->
+    <div class="tabbed-terminal-chrome">
+      <span class="chrome-dot chrome-dot--close"></span>
+      <span class="chrome-dot chrome-dot--min"></span>
+      <span class="chrome-dot chrome-dot--max"></span>
+    </div>
+
+    <!-- Tab bar -->
+    <div class="tabbed-terminal-tabbar" role="tablist">
+      {tabs.map((tab) => (
+        <label for={`tab-${tab.id}`} class="tab-label" role="tab">
+          {tab.label}
+        </label>
+      ))}
+    </div>
+
+    <!-- Tab panels with copy button -->
+    <div class="tabbed-terminal-body">
+      {tabs.map((tab) => (
+        <div class={`tab-panel tab-panel--${tab.id}`}>
+          <div class="tab-panel-content">
+            {tab.lines.map((line) => (
+              <div class="terminal-line">
+                {line.type === 'comment' ? (
+                  <span class="terminal-comment">{line.text}</span>
+                ) : (
+                  <><span class="terminal-prompt">$ </span><span class="terminal-cmd">{line.text}</span></>
+                )}
+              </div>
+            ))}
+          </div>
+          <button
+            class="copy-btn"
+            data-copy={tab.copyText}
+            type="button"
+            aria-label={`Copy ${tab.label} command`}
+          >
+            <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" />
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+            </svg>
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+          </button>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</div>
+
+<script is:inline>
+  document.querySelectorAll('.copy-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var text = btn.getAttribute('data-copy');
+      if (!text) return;
+      var copyIcon = btn.querySelector('.copy-icon');
+      var checkIcon = btn.querySelector('.check-icon');
+      navigator.clipboard.writeText(text).then(function() {
+        if (copyIcon) copyIcon.style.display = 'none';
+        if (checkIcon) checkIcon.style.display = 'block';
+        btn.classList.add('copied');
+        setTimeout(function() {
+          if (copyIcon) copyIcon.style.display = 'block';
+          if (checkIcon) checkIcon.style.display = 'none';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    });
+  });
+</script>
+
+<style>
+  .tabbed-terminal-wrapper {
+    width: 100%;
+  }
+
+  .tabbed-terminal {
+    background: var(--code-bg);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    overflow: hidden;
+    font-family: var(--font-mono, 'JetBrains Mono', monospace);
+    font-size: 0.875rem;
+    line-height: 1.75;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-card);
+  }
+
+  .tab-radio {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .tabbed-terminal-chrome {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 14px 20px 0;
+    flex-shrink: 0;
+  }
+
+  .chrome-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .chrome-dot--close { background: #ef4444; }
+  .chrome-dot--min   { background: #eab308; }
+  .chrome-dot--max   { background: #22c55e; }
+
+  .tabbed-terminal-tabbar {
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    padding: 10px 20px 0;
+    border-bottom: 1px solid var(--border-subtle);
+    flex-shrink: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .tabbed-terminal-tabbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tab-label {
+    padding: 6px 15px 7px;
+    font-size: 0.76rem;
+    font-family: var(--font-body, 'Manrope', sans-serif);
+    font-weight: 500;
+    color: var(--text-muted);
+    border: 1px solid transparent;
+    border-bottom: none;
+    border-radius: 7px 7px 0 0;
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.14s ease, background 0.14s ease, border-color 0.14s ease;
+    position: relative;
+    bottom: -1px;
+    white-space: nowrap;
+  }
+
+  .tab-label:hover {
+    color: var(--text-secondary);
+    background: var(--bg-card);
+  }
+
+  .tabbed-terminal-body {
+    padding: 20px 24px 22px;
+    min-height: 96px;
+    position: relative;
+  }
+
+  .tab-panel {
+    display: none;
+    position: relative;
+  }
+
+  .tab-panel-content {
+    padding-right: 40px;
+  }
+
+  /* Copy button */
+  .copy-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 8px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    line-height: 0;
+  }
+
+  .copy-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--border-accent);
+  }
+
+  .copy-btn.copied {
+    color: #22c55e;
+    border-color: rgba(34, 197, 94, 0.3);
+    background: rgba(34, 197, 94, 0.08);
+  }
+
+  .copy-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* Show active panel */
+  #tab-npm:checked    ~ .tabbed-terminal-body .tab-panel--npm,
+  #tab-yarn:checked   ~ .tabbed-terminal-body .tab-panel--yarn,
+  #tab-bun:checked    ~ .tabbed-terminal-body .tab-panel--bun,
+  #tab-pnpm:checked   ~ .tabbed-terminal-body .tab-panel--pnpm,
+  #tab-docker:checked ~ .tabbed-terminal-body .tab-panel--docker,
+  #tab-curl:checked   ~ .tabbed-terminal-body .tab-panel--curl {
+    display: block;
+  }
+
+  /* Active tab highlight */
+  .tabbed-terminal:has(#tab-npm:checked)    .tab-label[for="tab-npm"],
+  .tabbed-terminal:has(#tab-yarn:checked)   .tab-label[for="tab-yarn"],
+  .tabbed-terminal:has(#tab-bun:checked)    .tab-label[for="tab-bun"],
+  .tabbed-terminal:has(#tab-pnpm:checked)   .tab-label[for="tab-pnpm"],
+  .tabbed-terminal:has(#tab-docker:checked) .tab-label[for="tab-docker"],
+  .tabbed-terminal:has(#tab-curl:checked)   .tab-label[for="tab-curl"] {
+    color: var(--text-primary);
+    background: var(--bg-card-hover);
+    border-color: var(--border-subtle);
+  }
+
+  .terminal-line {
+    white-space: pre;
+  }
+
+  .terminal-comment {
+    color: var(--text-muted);
+  }
+
+  .terminal-prompt {
+    color: var(--accent-bright);
+    user-select: none;
+  }
+
+  .terminal-cmd {
+    color: var(--text-primary);
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .tabbed-terminal {
+      font-size: 0.8125rem;
+    }
+
+    .tabbed-terminal-chrome {
+      padding: 12px 14px 0;
+    }
+
+    .tabbed-terminal-tabbar {
+      padding: 8px 14px 0;
+      gap: 1px;
+    }
+
+    .tab-label {
+      padding: 5px 10px 6px;
+      font-size: 0.7rem;
+    }
+
+    .tabbed-terminal-body {
+      padding: 16px 16px 20px;
+    }
+
+    .terminal-line {
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+  }
+</style>

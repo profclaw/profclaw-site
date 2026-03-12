@@ -1,0 +1,97 @@
+---
+import FeatureCard from './FeatureCard.astro';
+
+// Duotone icons - filled base + stroke detail for premium feel
+const features = [
+  {
+    iconSvg: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor" opacity="0.15"/><circle cx="12" cy="12" r="4" fill="currentColor"/><path d="M12 2v3m0 14v3M4.93 4.93l2.12 2.12m9.9 9.9l2.12 2.12M2 12h3m14 0h3M4.93 19.07l2.12-2.12m9.9-9.9l2.12-2.12" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>',
+    title: '15+ AI Providers',
+    description: 'Anthropic, OpenAI, Google, Groq, Ollama, DeepSeek, Mistral, Cohere, and more. Swap in one line.',
+    accent: '#f43f5e',
+  },
+  {
+    iconSvg: '<svg viewBox="0 0 24 24"><rect x="2" y="3" width="19" height="14" rx="3" fill="currentColor" opacity="0.15"/><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8" cy="10" r="1" fill="currentColor"/><circle cx="12" cy="10" r="1" fill="currentColor"/><circle cx="16" cy="10" r="1" fill="currentColor"/></svg>',
+    title: '22+ Chat Channels',
+    description: 'Slack, Discord, Telegram, WhatsApp, Matrix, Teams, Signal, IRC, LINE, iMessage, and more.',
+    accent: '#6366f1',
+  },
+  {
+    iconSvg: '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3" fill="currentColor" opacity="0.15"/><rect x="6" y="6" width="4" height="4" rx="1" fill="currentColor" opacity="0.5"/><rect x="14" y="6" width="4" height="4" rx="1" fill="currentColor" opacity="0.5"/><rect x="6" y="14" width="4" height="4" rx="1" fill="currentColor" opacity="0.5"/><rect x="14" y="14" width="4" height="4" rx="1" fill="currentColor" opacity="0.5"/><path d="M8 12h8M12 8v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/></svg>',
+    title: '65+ Built-in Tools',
+    description: 'File ops, git, cron, web search, system admin, browser automation, screen capture, and more.',
+    accent: '#22c55e',
+  },
+  {
+    iconSvg: '<svg viewBox="0 0 24 24"><rect x="5" y="1" width="14" height="22" rx="4" fill="currentColor" opacity="0.12"/><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" fill="currentColor" opacity="0.3"/><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M19 10v2a7 7 0 0 1-14 0v-2" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/><line x1="12" y1="19" x2="12" y2="23" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="8" y1="23" x2="16" y2="23" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
+    title: 'Voice I/O',
+    description: 'Whisper speech-to-text, ElevenLabs and OpenAI TTS. Talk to your agent, hear it respond.',
+    accent: '#ec4899',
+  },
+  {
+    iconSvg: '<svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="3" fill="currentColor" opacity="0.15"/><rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M7 8l3 3-3 3" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="12" y1="14" x2="17" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
+    title: 'MCP Native',
+    description: 'Built-in Model Context Protocol server. Works with Claude Desktop and any MCP client natively.',
+    accent: '#3b82f6',
+  },
+  {
+    iconSvg: '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3" fill="currentColor" opacity="0.15"/><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M3 9h18" stroke="currentColor" stroke-width="1.5"/><circle cx="14" cy="15" r="2" fill="currentColor" opacity="0.4"/><path d="M8 13l2 2-2 2" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    title: 'Live Canvas',
+    description: 'Real-time code blocks, charts, Mermaid diagrams, HTML sandbox. Export to PNG, SVG, or PDF.',
+    accent: '#f59e0b',
+  },
+  {
+    iconSvg: '<svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" fill="currentColor" opacity="0.2"/><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    title: '15 Built-in Skills',
+    description: 'Code review, debugging, git workflow, Docker ops, web research, API testing - ready to use.',
+    accent: '#f97316',
+  },
+  {
+    iconSvg: '<svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="3" fill="currentColor" opacity="0.15"/><rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="12" cy="4" r="1.5" fill="currentColor"/><path d="M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M6 8h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/><path d="M10 16h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/></svg>',
+    title: 'Browser Automation',
+    description: 'Screenshot, navigate, click, fill forms, run JS. 8 built-in tools for headless browser control.',
+    accent: '#14b8a6',
+  },
+  {
+    iconSvg: '<svg viewBox="0 0 24 24"><circle cx="7" cy="12" r="5" fill="currentColor" opacity="0.12"/><circle cx="17" cy="12" r="5" fill="currentColor" opacity="0.12"/><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>',
+    title: 'Webhook Integrations',
+    description: 'GitHub, Jira, Linear with OAuth. Two-way ticket sync and project management built in.',
+    accent: '#a78bfa',
+  },
+  {
+    iconSvg: '<svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z" fill="currentColor" opacity="0.25"/><path d="M2 12l10 5 10-5" fill="currentColor" opacity="0.15"/><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 17l10 5 10-5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12l10 5 10-5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    title: 'Plugin SDK',
+    description: 'Build custom tools and channels. npm-based marketplace. Sandboxed execution with permissions.',
+    accent: '#8b5cf6',
+  },
+  {
+    iconSvg: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="currentColor" opacity="0.12"/><line x1="12" y1="1" x2="12" y2="23" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    title: 'Cost Tracking',
+    description: 'Per-token budgets, alerts at 50/80/100%, cost-per-provider comparison and trend analysis.',
+    accent: '#10b981',
+  },
+  {
+    iconSvg: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor" opacity="0.12"/><path d="M22 12H2m20 0a10 10 0 1 1-20 0 10 10 0 0 1 20 0z" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="12" cy="12" r="2" fill="currentColor" opacity="0.4"/></svg>',
+    title: 'Secure Tunnels',
+    description: 'Tailscale and Cloudflare Tunnel built in. Remote access without port forwarding.',
+    accent: '#06b6d4',
+  },
+];
+---
+
+<section id="features" class="fade-in-section relative z-10 px-6 py-16 max-w-6xl mx-auto">
+  <p class="text-center text-xs font-semibold tracking-[0.2em] uppercase mb-3" style="color: var(--accent-bright);">
+    Capabilities
+  </p>
+  <h2 class="font-heading text-2xl sm:text-3xl font-[800] text-center mb-3" style="color: var(--text-primary); letter-spacing: -0.02em;">
+    Everything you need, built in
+  </h2>
+  <p class="text-center text-sm mb-10 max-w-lg mx-auto" style="color: var(--text-secondary);">
+    No plugins required for the essentials. 65+ tools, 22+ channels, voice I/O, browser control, and more.
+  </p>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+    {features.map((f) => (
+      <FeatureCard title={f.title} description={f.description} iconSvg={f.iconSvg} accent={f.accent} />
+    ))}
+  </div>
+</section>

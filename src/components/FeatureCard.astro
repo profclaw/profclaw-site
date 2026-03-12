@@ -1,0 +1,23 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  iconSvg: string;
+  accent?: string;
+}
+
+const { title, description, iconSvg, accent = 'var(--accent-bright)' } = Astro.props;
+---
+
+<div class="card group p-5 cursor-default feature-card">
+  <div class="relative z-10">
+    <div
+      class="mb-3 w-10 h-10 flex items-center justify-center rounded-xl transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg"
+      style={`color: ${accent}; background: ${accent}10; border: 1px solid ${accent}18;`}
+    >
+      <div class="w-[22px] h-[22px]" set:html={iconSvg} />
+    </div>
+    <h3 class="font-heading font-bold text-[0.9rem] mb-1" style="color: var(--text-primary); letter-spacing: -0.01em;">{title}</h3>
+    <p class="text-[0.8rem] leading-relaxed" style="color: var(--text-secondary);">{description}</p>
+  </div>
+</div>

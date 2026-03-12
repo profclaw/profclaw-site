@@ -1,0 +1,220 @@
+---
+import Mascot from './Mascot.astro';
+---
+
+<header id="hero" class="relative flex items-center px-6 pt-20 pb-16 md:pt-28 md:pb-20 overflow-hidden">
+  <!-- Animated gradient orbs -->
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-orb hero-orb-3"></div>
+
+  <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(600px circle at 65% 45%, rgba(244, 63, 94, 0.1), transparent 55%);"></div>
+
+  <div class="relative z-10 w-full max-w-6xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 items-center">
+
+      <!-- LEFT: Copy -->
+      <div class="order-2 md:order-1 text-center md:text-left flex flex-col items-center md:items-start">
+        <div class="flex items-center gap-2 mb-6 hero-anim hero-anim-1">
+          <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold" style="background: var(--accent-glow); border: 1px solid var(--border-accent); color: var(--accent-bright);">
+            <span class="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></span>
+            Launching March 2026
+          </span>
+        </div>
+
+        <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-[800] mb-2 hero-anim hero-anim-2" style="letter-spacing: -0.03em; line-height: 1.05;">
+          <span class="bg-gradient-to-br from-[#fb7185] via-[#f43f5e] to-[#e11d48] bg-clip-text text-transparent">prof</span><span style="color: var(--text-primary);">Claw</span>
+        </h1>
+
+        <p class="text-[0.7rem] sm:text-xs font-medium mb-4 hero-anim hero-anim-2" style="color: var(--text-muted); letter-spacing: 0.04em;">
+          <span style="color: var(--text-secondary);">prof</span> as in <em style="color: var(--accent-bright);">professional</em>. <span style="color: var(--text-secondary);">Claw</span> as in <em style="color: var(--accent-bright);">grip</em>.
+        </p>
+
+        <p class="text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase mb-4 hero-anim hero-anim-3" style="color: var(--accent-bright);">
+          Smart, lightweight AI agent engine
+        </p>
+
+        <p class="text-base sm:text-lg leading-relaxed mb-7 max-w-lg hero-anim hero-anim-4" style="color: var(--text-secondary);">
+          Run AI agents on your own hardware. Connect to Slack, Discord, Telegram - any chat app you already use. Your data never leaves your machine.
+        </p>
+
+        <!-- CTAs -->
+        <div class="flex flex-col sm:flex-row items-center md:items-start gap-3 mb-7 hero-anim hero-anim-5">
+          <span class="btn-primary" style="cursor: default; opacity: 0.9;">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            Coming Next Week
+          </span>
+          <a href="#quickstart" class="btn-secondary">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
+            Preview What's Coming
+          </a>
+        </div>
+
+        <!-- Stat badges -->
+        <div class="flex flex-wrap items-center justify-center md:justify-start gap-2 hero-anim hero-anim-6">
+          <div class="stat-badge"><span class="stat-badge-accent" data-count="15">0</span>+ Providers</div>
+          <div class="stat-badge"><span class="stat-badge-accent" data-count="65">0</span>+ Tools</div>
+          <div class="stat-badge"><span class="stat-badge-accent" data-count="22">0</span>+ Channels</div>
+          <div class="stat-badge"><span class="stat-badge-accent">MCP</span> Native</div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Mascot + Terminal -->
+      <div class="order-1 md:order-2 flex flex-col items-center gap-5 hero-anim hero-anim-3">
+        <div
+          id="m-container"
+          class="mascot-hero-size"
+          style="will-change: transform; transform-style: preserve-3d;"
+        >
+          <Mascot prefix="m" class="w-full h-full" />
+        </div>
+
+        <div class="hero-terminal">
+          <div class="hero-terminal-bar">
+            <span class="hero-dot" style="background:#ef4444;"></span>
+            <span class="hero-dot" style="background:#eab308;"></span>
+            <span class="hero-dot" style="background:#22c55e;"></span>
+            <span class="hero-terminal-title">Terminal</span>
+          </div>
+          <div class="hero-terminal-body">
+            <div class="hero-type-line"><span class="hero-t-muted"># One command to set up everything</span></div>
+            <div class="hero-type-line" style="animation-delay: 0.4s;"><span class="hero-t-prompt">$</span><span class="hero-t-accent"> npx</span><span class="hero-t-cmd"> profclaw onboard</span></div>
+            <div class="hero-type-line mt-1.5" style="animation-delay: 0.8s;"><span class="hero-t-muted"># Or use Docker</span></div>
+            <div class="hero-type-line" style="animation-delay: 1.2s;"><span class="hero-t-prompt">$</span><span class="hero-t-accent"> docker run</span><span class="hero-t-cmd"> -p 3000:3000 profclaw/profclaw</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+
+<!-- Counter animation + staggered hero entrance (inline: runs immediately) -->
+<script is:inline>
+  document.querySelectorAll('.hero-anim').forEach(el => {
+    el.style.opacity = '1';
+    el.style.transform = 'translateY(0)';
+  });
+
+  document.querySelectorAll('[data-count]').forEach(el => {
+    const target = parseInt(el.dataset.count, 10);
+    let current = 0;
+    const duration = 1200;
+    const start = performance.now();
+    const step = (now) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      current = Math.round(eased * target);
+      el.textContent = current;
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    setTimeout(() => requestAnimationFrame(step), 800);
+  });
+</script>
+
+<!-- Mascot engine: bundled by Vite, imported from utils -->
+<script>
+  import { MascotEngine } from '../utils/mascot-engine';
+
+  const engine = new MascotEngine('m', {
+    floating: true,
+    heroId: 'hero',
+  });
+  engine.start();
+</script>
+
+<style>
+  /* Mascot container sizes */
+  .mascot-hero-size {
+    width: 130px;
+    height: 130px;
+  }
+  @media (min-width: 768px) {
+    .mascot-hero-size { width: 170px; height: 170px; }
+  }
+  @media (min-width: 1024px) {
+    .mascot-hero-size { width: 200px; height: 200px; }
+  }
+
+  /* Floating companion mode (toggled by MascotEngine) */
+  :global(#m-container.is-floating) {
+    position: fixed !important;
+    bottom: 20px;
+    right: 20px;
+    width: 80px !important;
+    height: 80px !important;
+    z-index: 100;
+    cursor: pointer;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 50%;
+    padding: 10px;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    box-shadow: 0 0 30px -5px rgba(244, 63, 94, 0.2), var(--shadow-card);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  :global(#m-container.is-floating:hover) {
+    border-color: var(--border-accent);
+    box-shadow: 0 0 40px -5px rgba(244, 63, 94, 0.35), var(--shadow-elevated);
+  }
+
+  @media (max-width: 640px) {
+    :global(#m-container.is-floating) {
+      width: 64px !important;
+      height: 64px !important;
+      bottom: 16px;
+      right: 16px;
+      padding: 8px;
+    }
+  }
+
+  /* Staggered entrance animations */
+  .hero-anim {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .hero-anim-1 { transition-delay: 0.1s; }
+  .hero-anim-2 { transition-delay: 0.2s; }
+  .hero-anim-3 { transition-delay: 0.3s; }
+  .hero-anim-4 { transition-delay: 0.4s; }
+  .hero-anim-5 { transition-delay: 0.55s; }
+  .hero-anim-6 { transition-delay: 0.7s; }
+
+  /* Terminal typing effect */
+  .hero-type-line {
+    opacity: 0;
+    animation: type-in 0.4s ease forwards;
+    animation-delay: 0.6s;
+  }
+
+  @keyframes type-in {
+    from { opacity: 0; transform: translateX(-4px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .hero-orb { position: absolute; border-radius: 50%; filter: blur(90px); pointer-events: none; z-index: 0; }
+  .hero-orb-1 { width: 600px; height: 600px; top: -10%; left: 5%; background: radial-gradient(circle, rgba(244,63,94,0.14), transparent 65%); animation: orb-drift-1 14s ease-in-out infinite; }
+  .hero-orb-2 { width: 500px; height: 500px; top: 20%; right: 0%; background: radial-gradient(circle, rgba(139,92,246,0.09), transparent 65%); animation: orb-drift-2 18s ease-in-out infinite; }
+  .hero-orb-3 { width: 400px; height: 400px; bottom: -10%; left: 30%; background: radial-gradient(circle, rgba(59,130,246,0.07), transparent 65%); animation: orb-drift-3 12s ease-in-out infinite; }
+
+  :global(html[data-theme='light']) .hero-orb-1 { background: radial-gradient(circle, rgba(244,63,94,0.08), transparent 65%); }
+  :global(html[data-theme='light']) .hero-orb-2 { background: radial-gradient(circle, rgba(139,92,246,0.05), transparent 65%); }
+  :global(html[data-theme='light']) .hero-orb-3 { background: radial-gradient(circle, rgba(59,130,246,0.04), transparent 65%); }
+
+  @keyframes orb-drift-1 { 0%, 100% { transform: translate(0,0) scale(1); } 33% { transform: translate(50px,-30px) scale(1.06); } 66% { transform: translate(-30px,25px) scale(0.94); } }
+  @keyframes orb-drift-2 { 0%, 100% { transform: translate(0,0) scale(1); } 33% { transform: translate(-40px,30px) scale(1.1); } 66% { transform: translate(25px,-45px) scale(0.9); } }
+  @keyframes orb-drift-3 { 0%, 100% { transform: translate(0,0) scale(1); } 50% { transform: translate(35px,-25px) scale(1.12); } }
+
+  .hero-terminal { background: var(--code-bg); border: 1px solid var(--border-subtle); border-radius: 14px; overflow: hidden; font-family: var(--font-mono); font-size: 0.8rem; width: 100%; max-width: 460px; box-shadow: var(--shadow-card), inset 0 1px 0 0 rgba(255,255,255,0.04); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); }
+  .hero-terminal-bar { display: flex; align-items: center; gap: 7px; padding: 10px 14px; border-bottom: 1px solid var(--border-subtle); }
+  .hero-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+  .hero-terminal-title { margin-left: 8px; font-size: 0.65rem; color: var(--text-muted); font-family: var(--font-body); font-weight: 500; }
+  .hero-terminal-body { padding: 12px 16px; }
+  .hero-t-muted { color: var(--text-muted); font-size: 0.72rem; }
+  .hero-t-prompt { color: var(--text-muted); user-select: none; }
+  .hero-t-accent { color: var(--accent-bright); }
+  .hero-t-cmd { color: var(--text-primary); }
+</style>

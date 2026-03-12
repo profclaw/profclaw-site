@@ -1,0 +1,28 @@
+---
+interface Props {
+  title: string;
+  lines: Array<{ type: 'comment' | 'command'; text: string }>;
+}
+
+const { title, lines } = Astro.props;
+---
+
+<div class="terminal relative">
+  <div class="terminal-header">
+    <span class="terminal-dot"></span>
+    <span class="terminal-dot"></span>
+    <span class="terminal-dot"></span>
+    <span class="terminal-title">{title}</span>
+  </div>
+  <div class="terminal-body">
+    {lines.map((line) => (
+      <div class="terminal-line">
+        {line.type === 'comment' ? (
+          <span class="terminal-comment">{line.text}</span>
+        ) : (
+          <><span class="terminal-prompt">$ </span><span class="terminal-cmd">{line.text}</span></>
+        )}
+      </div>
+    ))}
+  </div>
+</div>

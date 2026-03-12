@@ -1,0 +1,16 @@
+{
+  "name": "profclaw-site",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "lsof -ti:6001 | xargs kill -9 2>/dev/null; astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "og": "npx playwright screenshot --viewport-size='1200,630' --wait-for-timeout=1000 http://localhost:6001/og public/og-image.png"
+  },
+  "dependencies": {
+    "astro": "^5.5.0",
+    "@tailwindcss/vite": "^4.0.0",
+    "tailwindcss": "^4.0.0"
+  }
+}
