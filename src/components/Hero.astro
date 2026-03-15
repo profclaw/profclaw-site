@@ -1,5 +1,6 @@
 ---
 import Mascot from './Mascot.astro';
+import GitHubIcon from './icons/GitHubIcon.astro';
 ---
 
 <header id="hero" class="relative flex items-center px-6 pt-20 pb-16 md:pt-28 md:pb-20 overflow-hidden">
@@ -16,10 +17,10 @@ import Mascot from './Mascot.astro';
       <!-- LEFT: Copy -->
       <div class="order-2 md:order-1 text-center md:text-left flex flex-col items-center md:items-start">
         <div class="flex items-center gap-2 mb-6 hero-anim hero-anim-1">
-          <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold" style="background: var(--accent-glow); border: 1px solid var(--border-accent); color: var(--accent-bright);">
+          <a href="https://www.npmjs.com/package/profclaw" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold" style="background: var(--accent-glow); border: 1px solid var(--border-accent); color: var(--accent-bright); text-decoration: none;">
             <span class="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></span>
-            Launching March 2026
-          </span>
+            v2.0.0 Public Beta
+          </a>
         </div>
 
         <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-[800] mb-2 hero-anim hero-anim-2" style="letter-spacing: -0.03em; line-height: 1.05;">
@@ -40,19 +41,19 @@ import Mascot from './Mascot.astro';
 
         <!-- CTAs -->
         <div class="flex flex-col sm:flex-row items-center md:items-start gap-3 mb-7 hero-anim hero-anim-5">
-          <span class="btn-primary" style="cursor: default; opacity: 0.9;">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-            Coming Next Week
-          </span>
-          <a href="#quickstart" class="btn-secondary">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
-            Preview What's Coming
+          <a href="https://github.com/profclaw/profclaw" target="_blank" rel="noopener" class="btn-primary">
+            <GitHubIcon />
+            View on GitHub
+          </a>
+          <a href="https://profclaw.ai/docs" class="btn-secondary">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+            Read the Docs
           </a>
         </div>
 
         <!-- Stat badges -->
         <div class="flex flex-wrap items-center justify-center md:justify-start gap-2 hero-anim hero-anim-6">
-          <div class="stat-badge"><span class="stat-badge-accent" data-count="15">0</span>+ Providers</div>
+          <div class="stat-badge"><span class="stat-badge-accent" data-count="35">0</span>+ Providers</div>
           <div class="stat-badge"><span class="stat-badge-accent" data-count="65">0</span>+ Tools</div>
           <div class="stat-badge"><span class="stat-badge-accent" data-count="22">0</span>+ Channels</div>
           <div class="stat-badge"><span class="stat-badge-accent">MCP</span> Native</div>
