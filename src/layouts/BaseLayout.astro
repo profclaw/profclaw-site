@@ -8,7 +8,7 @@ interface Props {
 
 const {
   title,
-  description = 'profClaw - Smart, lightweight AI agent engine. Run locally on anything.',
+  description = 'Self-hosted AI agent engine with 35 providers, 72 tools, and 22 chat channels. Run on your hardware. Free, open source, local-first.',
 } = Astro.props;
 
 const canonicalUrl = 'https://profclaw.ai/';
@@ -21,13 +21,13 @@ const jsonLd = {
   applicationCategory: 'UtilitiesApplication',
   applicationSubCategory: 'AI Agent Engine',
   operatingSystem: 'macOS, Windows, Linux, Docker',
-  description: 'Smart, lightweight AI agent engine. Run locally on Docker, VPS, home PC, or Mac. Connect to Slack, Discord, Telegram and 22+ chat channels.',
+  description: 'Self-hosted AI agent engine with 35 providers, 72 tools, and 22 chat channels. Runs on Docker, Raspberry Pi, VPS, or Mac. Free and open source.',
   url: canonicalUrl,
   image: ogImage,
   screenshot: ogImage,
-  softwareVersion: '1.0.0',
-  datePublished: '2026-03-19',
-  releaseNotes: 'Initial public release with 65+ tools, 22+ chat channels, 15+ AI providers, and 3 deployment modes.',
+  softwareVersion: '2.2.0',
+  datePublished: '2026-04-13',
+  releaseNotes: 'Gemma 4 local AI, streaming chat, 72 tools, 35 providers, pico mode for Raspberry Pi.',
   offers: {
     '@type': 'Offer',
     price: '0',
@@ -50,7 +50,7 @@ const jsonLd = {
       'https://x.com/profclaw',
     ],
   },
-  featureList: '15+ AI Providers, 22+ Chat Channels, 65+ Built-in Tools, MCP Native, Voice I/O, Browser Automation, Plugin SDK, Cost Tracking',
+  featureList: '35 AI Providers, 22 Chat Channels, 72 Built-in Tools, MCP Native, Voice I/O, Browser Automation, Plugin SDK, Cost Tracking, Gemma 4 Local AI',
 };
 ---
 
