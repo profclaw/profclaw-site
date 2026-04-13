@@ -1,5 +1,5 @@
 ---
-type TabId = 'npm' | 'yarn' | 'bun' | 'pnpm' | 'docker' | 'curl';
+type TabId = 'npm' | 'yarn' | 'bun' | 'pnpm' | 'docker' | 'pi' | 'curl';
 
 interface Tab {
   id: TabId;
@@ -56,6 +56,18 @@ const tabs: Tab[] = [
       { type: 'command', text: '  -e ANTHROPIC_API_KEY=sk-ant-xxx \\' },
       { type: 'command', text: '  -e PROFCLAW_MODE=mini \\' },
       { type: 'command', text: '  ghcr.io/profclaw/profclaw:latest' },
+    ],
+  },
+  {
+    id: 'pi',
+    label: 'Pi / Edge',
+    copyText: 'docker run -d -p 3000:3000 -e PROFCLAW_MODE=pico ghcr.io/profclaw/profclaw:pico',
+    lines: [
+      { type: 'comment', text: '# Raspberry Pi, $5 VPS, 512MB devices' },
+      { type: 'command', text: 'docker run -d \\' },
+      { type: 'command', text: '  -p 3000:3000 \\' },
+      { type: 'command', text: '  -e PROFCLAW_MODE=pico \\' },
+      { type: 'command', text: '  ghcr.io/profclaw/profclaw:pico' },
     ],
   },
   {
@@ -294,6 +306,7 @@ const tabs: Tab[] = [
   #tab-bun:checked    ~ .tabbed-terminal-body .tab-panel--bun,
   #tab-pnpm:checked   ~ .tabbed-terminal-body .tab-panel--pnpm,
   #tab-docker:checked ~ .tabbed-terminal-body .tab-panel--docker,
+  #tab-pi:checked     ~ .tabbed-terminal-body .tab-panel--pi,
   #tab-curl:checked   ~ .tabbed-terminal-body .tab-panel--curl {
     display: block;
   }
@@ -304,6 +317,7 @@ const tabs: Tab[] = [
   .tabbed-terminal:has(#tab-bun:checked)    .tab-label[for="tab-bun"],
   .tabbed-terminal:has(#tab-pnpm:checked)   .tab-label[for="tab-pnpm"],
   .tabbed-terminal:has(#tab-docker:checked) .tab-label[for="tab-docker"],
+  .tabbed-terminal:has(#tab-pi:checked)     .tab-label[for="tab-pi"],
   .tabbed-terminal:has(#tab-curl:checked)   .tab-label[for="tab-curl"] {
     color: var(--text-primary);
     background: var(--bg-card-hover);
